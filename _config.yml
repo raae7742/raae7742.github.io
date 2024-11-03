@@ -1,8 +1,8 @@
 # 1. Site Settings
-title               : blog
+title               : Dev Blog
 owner               : "Hyeonae Jang"
 url                : "https://raae7742.github.io"
-baseurl            : "/blog"
+baseurl            : ""
 permalink           : /:title/
 description         : "Hyeonae's dev blog website."
 markdown            : kramdown
@@ -88,7 +88,7 @@ email               : "raae7742@gmail.com"
 linkedin            : 
 github              : "raae7742" 
 gitlab              : 
-website             : "https://raae7742.github.io/blog"
+website             : "https://raae7742.github.io"
 twitter             : 
 facebook            : 
 instagram           : 
