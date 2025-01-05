@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  font-family: 'born2bSportyFS';
+}
+.header p {
+  font-size: 56px;
+}
+.header nav a {
+  margin: 0 24px;
+  font-size: 40px;
+  text-decoration: none;
+  color: #000;
+}

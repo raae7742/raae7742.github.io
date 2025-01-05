@@ -1,0 +1,27 @@
+.home {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 80px 50px;
+  }
+.title {
+    margin-bottom: 30px;
+}
+.title h2 {
+    font-size: 72px;
+    line-height: 0.5;
+    font-family: 'born2bSportyFS', sans-serif;
+}
+.home-text p {
+    font-size: 24px;
+    font-family: 'Inter_24pt-Regular';
+}
+.home-text a {
+    color: #26B000;
+    text-decoration: none;
+}
+.home-text a:hover {
+    text-decoration: underline;
+}
