@@ -14,3 +14,15 @@
   text-decoration: none;
   color: #000;
 }
+
+.logo {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 56px;
+  font-family: 'born2bSportyFS';
+}
+
+.logo:hover {
+  opacity: 0.8;
+}

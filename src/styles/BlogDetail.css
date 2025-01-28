@@ -1,0 +1,94 @@
+.blog-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.blog-detail-header {
+  margin-bottom: 2rem;
+}
+
+.blog-date {
+  font-family: 'born2bSportyFS';
+  color: #6941C6;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-title {
+  font-family: 'born2bSportyFS';
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.blog-detail-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.blog-tags {
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  color: #FFF;
+}
+
+.tag.Leadership { background: #6941C6; }
+.tag.Management { background: #363F72; }
+.tag.Product { background: #026AA2; }
+.tag.Research { background: #3538CD; }
+.tag.Frameworks { background: #C4320A; }
+
+.blog-detail-sidebar {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+.table-of-contents {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.table-of-contents h3 {
+  font-family: 'born2bSportyFS';
+  margin-bottom: 1rem;
+}
+
+.table-of-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+.table-of-contents li {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.blog-detail-main {
+  line-height: 1.8;
+}
+
+.blog-detail-tags {
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.blog-detail-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+} 
