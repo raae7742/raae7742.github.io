@@ -23,6 +23,8 @@
   transition: transform 0.2s;
   background: white;
   cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
 }
 
 .blog-card:hover {
@@ -53,8 +55,11 @@
 }
 
 .description {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 300;
   margin-bottom: 1rem;
   line-height: 1.5;
+  color: #666;
 }
 
 .tags {
@@ -74,4 +79,15 @@
 .tag.Management { background: #363F72; }
 .tag.Product { background: #026AA2; }
 .tag.Research { background: #3538CD; }
-.tag.Frameworks { background: #C4320A; } 
+.tag.Frameworks { background: #C4320A; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

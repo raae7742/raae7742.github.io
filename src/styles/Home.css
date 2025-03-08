@@ -1,27 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
 .home {
-    flex: 1;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 80px 50px;
-  }
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-top: -60px;
+}
+
+.home-text {
+    text-align: center;
+}
+
 .title {
-    margin-bottom: 30px;
+    margin-bottom: 3rem !important;
 }
+
 .title h2 {
-    font-size: 72px;
-    line-height: 0.5;
-    font-family: 'born2bSportyFS', sans-serif;
+    font-size: 3.5rem;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+.title h2 span {
+    opacity: 0;
+    animation: fadeIn 0.1s forwards;
+}
+
+.title img {
+    width: 56px;
+    height: 56px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 1.2s forwards;
+}
+
 .home-text p {
-    font-size: 24px;
-    font-family: 'Inter_24pt-Regular';
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 300;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    color: #666;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 4.0s forwards;
 }
+
 .home-text a {
-    color: #26B000;
+    color: #2ecc71;
     text-decoration: none;
 }
+
 .home-text a:hover {
     text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }

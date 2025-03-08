@@ -14,7 +14,7 @@ function BlogDetail() {
   }
 
   return (
-    <div className="blog-detail-container">
+    <div className="container blog-detail-container">
       <div className="blog-detail-header">
         <p className="blog-date">{post.date}</p>
         <p className="blog-title">{post.title}</p>
