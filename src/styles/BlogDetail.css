@@ -24,6 +24,7 @@
 .blog-detail-content {
   line-height: 1.8;
   font-size: 1.1rem;
+  margin-bottom: 6rem;
 }
 
 .blog-tags {
@@ -31,6 +32,7 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-bottom: 4rem;
 }
 
 .tag {
@@ -91,4 +93,15 @@
   margin-bottom: 2rem;
   object-fit: cover;
   aspect-ratio: 16 / 9;
+}
+
+.blog-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.markdown-content {
+  margin-bottom: 4rem;
 } 

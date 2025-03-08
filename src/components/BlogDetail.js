@@ -1,5 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import { blogPosts } from "../data/blogPosts";
 import "../styles/BlogDetail.css";
 
@@ -16,6 +18,7 @@ function BlogDetail() {
       <div className="blog-detail-header">
         <p className="blog-date">{post.date}</p>
         <p className="blog-title">{post.title}</p>
+        <p className="blog-description">{post.description}</p>
       </div>
 
       <div className="blog-detail-content">
@@ -24,7 +27,9 @@ function BlogDetail() {
           alt={post.title} 
           className="blog-detail-image"
         />
-        <p>{post.description}</p>
+        <div className="markdown-content">
+          <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
+        </div>
         <div className="blog-tags">
           {post.tags.map((tag, index) => (
             <span key={index} className={`tag ${tag}`}>{tag}</span>
