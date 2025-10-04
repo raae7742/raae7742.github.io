@@ -1,4 +1,5 @@
 import billWalshImage from '../assets/img/bill-walsh.png';
+import loadBalancerImage from '../assets/img/load_balancer.png';
 
 export const blogPosts = [
   {
@@ -83,132 +84,202 @@ Multi-Master Replication provides a **powerful solution for distributed database
   },
   {
     id: 2,
-    title: "Understanding Load Balancers",
+    title: "Load Balancers: The Ticket Machine for Your Website Traffic",
     date: "29 Oct 2024",
-    description: "L4 and L7 Switches",
-    content: ` In modern distributed systems, managing incoming network traffic efficiently is crucial to ensure optimal performance, scalability, and availability. This is where **Load Balancers** come into play. A load balancer is a device or software that distributes network or application traffic across multiple servers. This helps prevent any single server from becoming a bottleneck, thereby improving responsiveness and fault tolerance. Load balancers are especially important when **scaling out** applications, allowing infrastructure to handle increasing loads dynamically.
+    description: "Distribute traffic efficiently, from L4 to L7",
+    content: ` Imagine all the people visiting your website are like customers walking into a bank.
 
-# **L4 vs. L7 Load Balancers: An Overview**
+Now, if the bank just says, *“Hey everyone, line up over here!”* what happens?
+Everyone crowds into one poor teller’s line, while the other tellers sit back sipping coffee. That’s exactly what happens when all traffic goes to a single server—it gets overloaded while others do nothing.
 
-The **OSI (Open Systems Interconnection) Model** defines different layers of networking. Load balancers operate at different layers of this model, most commonly at **Layer 4 (L4)** and **Layer 7 (L7)**.
+This is why banks have **a ticket machine**.
+You grab a ticket, and the machine assigns you to whichever teller is free. No chaos, no unfair workload. Customers are happy, and tellers don’t burn out.
+
+In the world of IT, this magical ticket machine is the **Load Balancer**.
+
+* \`Customers\` = user requests
+
+* \`Tellers\` = servers
+
+* \`Ticket machine\` = load balancer
+
+But here’s the fun part:
+
+When the bank suddenly gets flooded with customers, the manager can secretly bring in a few more tellers. Customers don’t even notice—they just keep taking tickets and getting served.
+
+That’s exactly how scaling out works in modern systems. Add more servers, let the load balancer distribute the work, and everyone’s happy: customers, servers, and the system administrators. 🎉
+
+# L4 vs. L7 Load Balancers: The Big Picture
+
+Before we dive into comparing L4 and L7 load balancers, let’s talk about **the OSI (Open Systems Interconnection) Model**.
+
+<img src="/img/osi_layer.png" alt="OsiLayer" width="100%" />
+
+It sounds intimidating, but really, it’s just a fancy way of saying: *“Here’s the seven-step recipe for how data travels across the internet.”*
+
+Think of it like a package delivery service:
+
+- Which country it’s coming from (\`Layer 1–2: Physical/Data Link\`)
+
+- Which city or neighborhood it’s heading to (\`Layer 3: Network\`)
+
+- Which apartment door to knock on (\`Layer 4: Transport\`)
+
+- And finally, opening the door to check who the package is really for (\`Layer 7: Application\`)
+
+Step by step, the package makes its way safely to the right person.
+
+Now, here’s where load balancers come in. They can work at **Layer 4 or Layer 7**:
+
+- An **L4 switch** is like a courier who only looks at the address and apartment number—fast, but doesn’t care what’s inside the box.
+
+- An **L7 switch** is like a courier who actually opens the box to see if it’s pizza, fried chicken, or a love letter before deciding where to deliver it.
+
+So, **L4 is quick and simple**, while **L7 is smarter and more precise**—but might take a little longer.
+
 
 <br>
 
-## **Layer 4 (L4) Load Balancing ( = L4 Switch)**
+## Layer 4 (L4) Load Balancer: The Courier Who Only Looks at the Address
 
 An **L4 Load Balancer** operates at the **transport layer**, making forwarding decisions based on IP addresses and port numbers without inspecting the actual content of the network packets. This approach is more efficient as it does not require deep packet inspection.
 
-Popular L4 load balancers include **AWS Network Load Balancer (NLB)** and other hardware-based solutions.
+They don’t care what’s inside the box at all.
+
+Instead, they just say:
+
+*“Oh, this package is going to \`192.168.0.10\` (= IP address) + \`:443\` (= Port number).”* → \`Delivered!\`
+
+Since they never open the box (no deep inspection), everything goes much faster and more efficiently.
 
 <br>
 
-## **Key Functions of L4 Load Balancers**
+## 🛠️ Key Functions of L4 Load Balancers
 
-### 1. **Traffic Distribution**
+### 1. Traffic Distribution Algorithms
+  - **Round Robin**: Distributes packages sequentially.
+  - **Least Connection**: Chooses the least busy server.
+  - **Ratio-based**: Some servers get more, some get less—based on weight.
+  - **Fastest Response Time**: Sends traffic to the server that replies the quickest.
 
-- Uses various algorithms for load balancing:
-    - **Round Robin**: Distributes requests sequentially.
-    - **Least Connection**: Directs traffic to the server with the fewest active connections.
-    - **Ratio-based**: Routes traffic based on predefined server weights.
-    - **Fastest Response Time**: Selects the server with the lowest latency.
+### 2. Source/Destination IP NAT (Network Address Translation)
+  - The courier can relabel the package with a different address.
+  - This trick also helps defend against DDoS attacks (like preventing a delivery riot).
 
-### 2. **Source/Destination IP NAT (Network Address Translation)**
+### 3. TCP Connection Management
+  - Manages the classic **3-way handshake**: between client and server.
+    - *“Knock knock.” → “Who’s there?” → “Okay, come in.”*
+  - Tracks active connections and cleans up unused ones after a timeout.
 
-- Helps mitigate **DDoS attacks** using SYN cookie protection.
+### 4. SSL Offloading
+  - The courier decrypts the package before passing it on.
+  - The server then receives it as plain text, saving effort and working faster.
 
-### 3. **TCP Connection Management**
+### 5. Health Checks
+  - Keeps checking if a server is “alive.”
+  - If one server is down, no packages go there.
 
-- Manages **3-way handshake** between client and server.
-- Tracks active connections and terminates unused ones after a timeout.
-
-### 4. **SSL Offloading**
-
-- Decrypts **SSL/TLS traffic** from the client before forwarding it to backend servers as plain text.
-
-### 5. **Health Checks**
-
-- Periodically checks backend servers to ensure they are functional.
-- Supports TCP and HTTP-based health checks.
-
-### 6. **Persistence (Sticky Sessions)**
-
-- Ensures clients consistently connect to the same backend server when necessary.
+### 6. Sticky Sessions
+  - Ensures clients consistently connect to the same backend server when necessary.
 
 <br>
 
----
+## Layer 7 (L7) Load Balancer: The Courier Who Opens the Box
 
-## **L4 Load Balancer Deployment Models**
+If L4 was the courier who only looks at the address and apartment number, L7 is the more curious type. This courier actually opens the package and checks what’s inside before deciding where to send it.
 
-### 1. In-Line Architecture
-
-- All traffic must pass through the L4 switch.
-- Advantages: Easier to monitor traffic and diagnose issues.
-- Disadvantages: Increased load on the L4 switch, requiring redundancy solutions.
-- **(TODO draw a diagram)** Internet - Backbone Switch - L4 Switch - L2 Switch - Servers.
-
-### **2. One-Arm Architecture**
-
-- L4 switch operates alongside the backbone switch.
-- Advantages: Reduces the load on L4 and ensures continued connectivity if L4 fails.
-- Disadvantages: Some traffic bypasses L4, making troubleshooting harder.
-- **(TODO draw a diagram)** Internet → Backbone Switch → L4 → Backbone Switch → L2 → Servers.
-
-### 3. Direct Server Return(DSR)
-
-- The L4 switch handles incoming traffic, but the server directly responds to clients.
-- Commonly used for performance optimization.
+In networking terms, an L7 load balancer operates at the application layer. Instead of just looking at IP and port, it inspects HTTP headers, URLs, cookies, and even request payloads. That means it can make smarter, content-based decisions.
 
 <br>
 
----
+### 🛠️ How L7 Load Balancers Work
 
-## **L7 Load Balancing: A Deeper Look ( = L7 Switching)**
+**1. Content Inspection**
+  - Checks the label, the note inside, or even peeks into the box (= HTTP headers, cookies, payload).
+  - Example: *“Oh, this request is for \`/images\`, send it to the image server. This one’s for \`/api\`, send it to the API server.”*
 
-An **L7 Load Balancer** operates at the **application layer**, making forwarding decisions based on HTTP headers, URLs, cookies, or even request payloads. This enables **content-based routing** and supports advanced traffic management strategies.
+**2. User Awareness**
+  - Can tell if the client is mobile or desktop, and route accordingly.
+  - Example: *“This package is for Android users, forward to the mobile-optimized service!”*
 
-A common example is the **AWS Application Load Balancer (ALB)**, which offers more flexibility for web applications.
-
-<br>
-
-### **How L7 Load Balancers Work**
-
-- Inspects HTTP headers and other metadata to direct traffic.
-- Can differentiate between **mobile and desktop clients** for customized responses.
-- Supports **path-based routing**, allowing different URLs to be handled by different backend servers.
+**3. Path-based Routing**
+  - Different URLs = different backend servers.
+  - \`/login\` → Authentication server, \`/products\` → Catalog server, \`/checkout\` → Payment server.
 
 <br>
 
-### **Why Use L4 vs. L7 Load Balancing?**
+### L4 vs. L7: Which Courier Do You Need?
+- **L4 (Address-only courier):**
+  - Fast, efficient, doesn’t waste time opening boxes. Perfect if you don’t care about what’s inside.
 
-- L4 is **faster and more efficient** because it does not inspect content.
-- L7 is **more flexible** and supports **advanced traffic routing**.
-- If HTTP header inspection is unnecessary, using L4 saves computational resources.
-- In contrast, L7 is preferred when deep traffic analysis or content-based routing is needed.
+- **L7 (Curious courier):**
+  - Slower, because opening boxes takes time, but way more flexible. Great for content-based routing and advanced strategies.
+
+> 👉 If you don’t need deep inspection, L4 saves resources.
+
+> 👉 If you need smarter decisions based on content, L7 is the way to go.
 
 <br>
 
 ---
 
-# Load Balancing in Kubernetes
+## 🚀 Load Balancing in Real Systems: Kubernetes & Kafka
 
- Kubernetes provides built-in service types to manage traffic within a cluster. The three primary types are:
+Think of load balancers in a real system as **the couriers who decide where and how to deliver packages.**
+
+They determine which counter, which route, and which server should get the traffic—just like a courier managing parcels.
+
+
+### Load Balancing in Kubernetes
+
+Kubernetes provides service types to manage traffic within a cluster.
+
+It’s like setting rules for how packages should be delivered inside a company.
 
 1. **ClusterIP**
-    - Default service type, accessible only within the cluster.
+  - Accessible only within the cluster.
+  - Like a *“company-internal delivery desk”* that external customers cannot use.
+
 2. **NodePort**
-    - Exposes the service on a static port across all nodes.
+  - Exposes the service on the same port across all nodes.
+  - Like having *“delivery windows at all company entrances”* so anyone can drop off or pick up.
+
 3. **LoadBalancer**
-    - Integrates with external load balancers (such as AWS ELB or GCP Load Balancer) for external traffic distribution.
+  - Integrates with external load balancers (AWS ELB, GCP Load Balancer, etc.).
+  - Like *distributing incoming traffic (packages) evenly across multiple servers (couriers).*
+
+In short, Kubernetes defines rules for how L4/L7 couriers deliver the packages inside the cluster.
 
 <br>
 
+### Kafka and Partition Rebalancing
+
+Kafka, a distributed messaging system, also uses load balancing to deliver messages (packages) evenly across consumers (couriers).
+
+- When a new consumer joins or leaves, Kafka performs partition rebalancing.
+
+- Think of it like: *“A new courier joins, let’s redistribute the packages fairly so no one is overloaded.”*
+
+- This ensures all consumers get a balanced workload.
+
+
 ---
 
-# Kafka and Rebalancing
+# Conclusion
 
-Kafka, a distributed messaging system, also involves load balancing in the form of **partition rebalancing**. This ensures that message consumption is evenly distributed among consumers when new nodes join or leave the cluster.`,
-    image: billWalshImage,
+### L4 Load Balancer
+- Operates at the transport layer, forwarding traffic based solely on IP addresses and port numbers. It is fast, efficient, and suitable for handling high-volume traffic, where simple distribution is sufficient.
+
+### L7 Load Balancer
+- Operates at the application layer, inspecting HTTP headers, URLs, cookies, and request payloads. It enables intelligent routing, content-based decisions, and customized responses, making it ideal for complex traffic management scenarios.
+
+### Practical Applications (Kubernetes & Kafka)
+Load balancers are critical in modern distributed systems. In Kubernetes, they distribute incoming requests across services efficiently, while in Kafka, partition rebalancing ensures even distribution of messages among consumers. Proper use of L4 and L7 load balancing is essential for **scalability, reliability, and performance optimization.**
+
+> **Key takeaway:** Choose L4 for high-speed, simple traffic distribution, and L7 when content-aware routing or advanced traffic management is required.
+
+`,
+    image: loadBalancerImage,
     tags: ["Database"]
   }
 ]; 
