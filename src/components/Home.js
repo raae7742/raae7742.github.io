@@ -50,8 +50,6 @@ function Home() {
               ))}
             </h2>
           </div>
-          <p>currently based in Seoul, South Korea.</p>
-          <p>If you'd like to connect with me, just click <a href="#contact"><strong>{`{here}`}</strong></a>!</p>
         </div>
       </main>
     </div>
