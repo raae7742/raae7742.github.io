@@ -1,10 +1,13 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { blogPosts } from "../data/blogPosts";
 import waveTextureImg from "../assets/img/wave-texture.jpg";
 import "../styles/BlogDetail.css";
+
+const ease = [0.4, 0, 0.2, 1];
 
 function BlogDetail() {
   const { id } = useParams();
@@ -39,7 +42,12 @@ function BlogDetail() {
 
       <div className="bd-stage">
         {/* ── LEFT SIDEBAR ── */}
-        <aside className="bd-sidebar">
+        <motion.aside
+          className="bd-sidebar"
+          initial={{ x: -340, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease }}
+        >
           <Link to="/blog" className="bd-back">← BLOG</Link>
 
           <div className="bd-meta">
@@ -55,16 +63,22 @@ function BlogDetail() {
               <span key={i} className="bd-tag">{tag}</span>
             ))}
           </div>
-        </aside>
+        </motion.aside>
 
         {/* ── MAIN CONTENT ── */}
-        <main className="bd-main">
+        <motion.main
+          className="bd-main"
+          initial={{ opacity: 0, x: 80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease, delay: 0.15 }}
+          style={{ willChange: 'transform' }}
+        >
           <img src={post.image} alt={post.title} className="bd-hero" />
           <div className="bd-markdown">
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
           </div>
           <p className="bd-author">— Hyeonae</p>
-        </main>
+        </motion.main>
       </div>
     </div>
   );

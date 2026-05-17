@@ -1,5 +1,6 @@
-import loadBalancerImage from '../assets/img/load_balancer.png';
+import loadBalancerMainImage from '../assets/img/load_balancer_main.png';
 import smrMmrImage from '../assets/img/smr_mmr.png';
+import mmrImage from '../assets/img/mmr.png';
 
 export const blogPosts = [
   {
@@ -134,7 +135,7 @@ So when to use it?
 > In short: MMR keeps your data shop open, even when one counter goes down.
 
 `,
-    image: smrMmrImage,
+    image: mmrImage,
     tags: ["Database"],
     type: "Dev Log",
   },
@@ -179,7 +180,7 @@ That’s exactly how scaling out works in modern systems. Add more servers, let 
 
 Before we dive into comparing L4 and L7 load balancers, let’s talk about **the OSI (Open Systems Interconnection) Model**.
 
-<img src="/img/osi_layer.png" alt="OsiLayer" width="100%" />
+<img src="/img/load_balancer_osi_layer.png" alt="OSI Layer Model" width="100%" />
 
 It sounds intimidating, but really, it’s just a fancy way of saying: *“Here’s the seven-step recipe for how data travels across the internet.”*
 
@@ -309,6 +310,11 @@ In networking terms, an L7 load balancer operates at the application layer. Inst
 <br>
 
 ### L4 vs. L7: Which Courier Do You Need?
+
+<img src="/img/load_balancer_l4_l7.png" alt="L4 vs L7 Load Balancer" width="100%" />
+
+<br>
+
 **L4 (Address-only courier):**
   - Fast, efficient, doesn’t waste time opening boxes. Perfect if you don’t care about what’s inside.
 
@@ -406,7 +412,7 @@ Load balancers are critical in modern distributed systems. In Kubernetes, they d
 
 <br>
 `,
-    image: loadBalancerImage,
+    image: loadBalancerMainImage,
     tags: ["Database"],
     type: "Dev Log",
   }

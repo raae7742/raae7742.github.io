@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { blogPosts } from "../data/blogPosts";
 import waveTextureImg from "../assets/img/wave-texture.jpg";
 import turntableImg from "../assets/img/turntable.png";
@@ -14,7 +15,11 @@ function Blog() {
     setActiveIndex((prev) => (prev + dir + blogPosts.length) % blogPosts.length);
 
   return (
-    <div className="blog">
+    <motion.div
+      className="blog"
+      exit={{ opacity: 0, position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 50 }}
+      transition={{ duration: 0.45 }}
+    >
       <img src={waveTextureImg} alt="" className="blog-bg-img" aria-hidden="true" />
       <div className="blog-overlay" aria-hidden="true" />
 
@@ -127,7 +132,7 @@ function Blog() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
