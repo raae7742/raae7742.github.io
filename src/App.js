@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Blog from "./components/Blog";
 import BlogDetail from "./components/BlogDetail";
+import About from "./components/About";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import "./styles/App.css";
 
 function App() {
@@ -12,12 +12,15 @@ function App() {
     <Router basename={process.env.PUBLIC_URL}>
       <div className="app">
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
-        </Routes>
-        <Footer />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/project" element={<div style={{padding:'8rem 2rem',color:'#111',fontFamily:'Inter,sans-serif',fontSize:'0.9rem',letterSpacing:'0.1em'}}>PROJECT — COMING SOON</div>} />
+          </Routes>
+        </main>
       </div>
     </Router>
   );

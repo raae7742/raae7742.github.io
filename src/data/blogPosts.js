@@ -1,4 +1,3 @@
-import billWalshImage from '../assets/img/bill-walsh.png';
 import loadBalancerImage from '../assets/img/load_balancer.png';
 import smrMmrImage from '../assets/img/smr_mmr.png';
 
@@ -136,7 +135,8 @@ So when to use it?
 
 `,
     image: smrMmrImage,
-    tags: ["Database"]
+    tags: ["Database"],
+    type: "Dev Log",
   },
   {
     id: 2,
@@ -407,6 +407,7 @@ Load balancers are critical in modern distributed systems. In Kubernetes, they d
 <br>
 `,
     image: loadBalancerImage,
-    tags: ["Database"]
+    tags: ["Database"],
+    type: "Dev Log",
   }
 ]; 

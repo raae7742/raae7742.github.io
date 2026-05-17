@@ -1,57 +1,134 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { blogPosts } from "../data/blogPosts";
+import waveTextureImg from "../assets/img/wave-texture.jpg";
+import turntableImg from "../assets/img/turntable.png";
+import tonearmImg from "../assets/img/tonearm.png";
 import "../styles/Blog.css";
 
 function Blog() {
-  const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activePost = blogPosts[activeIndex];
 
-  useEffect(() => {
-    const style = document.createElement('style');
-    const rules = blogPosts.map((_, index) => `
-      .blog-card:nth-child(${index + 1}) {
-        animation-delay: ${(index * 0.1).toFixed(1)}s;
-      }
-    `).join('');
-
-    style.textContent = rules;
-    document.head.appendChild(style);
-
-    return () => document.head.removeChild(style);
-  }, []);
-
-  const handleBlogClick = (postId) => {
-    navigate(`/blog/${postId}`);
-  };
+  const goTo = (dir) =>
+    setActiveIndex((prev) => (prev + dir + blogPosts.length) % blogPosts.length);
 
   return (
-    <div className="container">
-      <div className="blog-container">
-        <p className="all-blog-posts">All Blog Posts</p>
-        <div className="blog-grid">
-          {blogPosts.map((post) => (
-            <article 
-              key={post.id} 
-              className="blog-card"
-              onClick={() => handleBlogClick(post.id)}
-            >
-              <img src={post.image} alt={post.title} className="blog-image" />
-              <div className="blog-content">
-                <p className="title">{post.title}</p>
-                <p className="date">{post.date}</p>
-                <p className="description">{post.description}</p>
-                <div className="tags">
-                  {post.tags.map((tag, index) => (
-                    <span key={index} className={`tag ${tag}`}>{tag}</span>
-                  ))}
-                </div>
+    <div className="blog">
+      <img src={waveTextureImg} alt="" className="blog-bg-img" aria-hidden="true" />
+      <div className="blog-overlay" aria-hidden="true" />
+
+      <div className="blog-bottom-bar">
+        <div className="blog-bottom-left">
+          <span>BASED IN SEOUL</span>
+        </div>
+        <div className="blog-bottom-right">
+          <span>© 2026 HYEONAE</span>
+          <span>ALL RIGHTS RESERVED</span>
+        </div>
+      </div>
+
+      <div className="blog-stage">
+        {/* ── LEFT: Turntable ── */}
+        <div className="blog-left">
+          <div className="blog-tt-wrap">
+            {/* Vinyl record */}
+            <img src={turntableImg} alt="" className="blog-tt-img" aria-hidden="true" />
+
+            {/* Center label: active post cover */}
+            <div className="blog-record-label">
+              <img
+                key={activePost.id}
+                src={activePost.image}
+                alt={activePost.title}
+                className="blog-record-cover"
+              />
+            </div>
+
+            {/* Tonearm overlay */}
+            <img src={tonearmImg} alt="" className="blog-tt-arm" aria-hidden="true" />
+          </div>
+
+          {/* NOW READING info */}
+          <div className="blog-np-bar">
+            <span className="blog-np-eyebrow">NOW READING</span>
+            <h2 className="blog-np-title">{activePost.title}</h2>
+            <p className="blog-np-desc">{activePost.description}</p>
+            <div className="blog-np-footer">
+              <div className="blog-controls">
+                <button
+                  className="blog-ctrl"
+                  onClick={() => goTo(-1)}
+                  aria-label="Previous"
+                >
+                  ⏮
+                </button>
+                <Link
+                  to={`/blog/${activePost.id}`}
+                  className="blog-ctrl blog-ctrl-play"
+                  aria-label="Read post"
+                >
+                  ▶
+                </Link>
+                <button
+                  className="blog-ctrl"
+                  onClick={() => goTo(1)}
+                  aria-label="Next"
+                >
+                  ⏭
+                </button>
               </div>
-            </article>
-          ))}
+              <span className="blog-np-meta">
+                {activePost.date} · {activePost.type}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="blog-divider" aria-hidden="true" />
+
+        {/* ── RIGHT: Playlist ── */}
+        <div className="blog-right">
+          <div className="blog-playlist-header">
+            <span className="blog-playlist-label">READLIST</span>
+          </div>
+
+          <ol className="blog-tracklist">
+            {blogPosts.map((post, i) => (
+              <li
+                key={post.id}
+                className={`blog-track${i === activeIndex ? " active" : ""}`}
+                onMouseEnter={() => setActiveIndex(i)}
+              >
+                <Link to={`/blog/${post.id}`} className="blog-track-link">
+                  <span className="blog-track-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <img
+                    src={post.image}
+                    alt=""
+                    className="blog-track-thumb"
+                    aria-hidden="true"
+                  />
+                  <div className="blog-track-info">
+                    <p className="blog-track-title">{post.title}</p>
+                    <p className="blog-track-meta">
+                      {post.date} · {post.type}
+                    </p>
+                  </div>
+                  <span className="blog-track-arrow">→</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+
+          <p className="blog-track-count">
+            {blogPosts.length} TRACK{blogPosts.length !== 1 ? "S" : ""}
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-export default Blog; 
+export default Blog;

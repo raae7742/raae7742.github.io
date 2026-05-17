@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&display=swap');
+
+.about {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Hero ── */
+.about-hero {
+  height: 100vh;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Background ── */
+.about-bg-img {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.75);
+  pointer-events: none;
+}
+
+.about-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* ── Two-column layout ── */
+.about-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 4rem;
+  gap: 0;
+}
+
+.about-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-name-img {
+  display: block;
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+.about-divider {
+  width: 1px;
+  height: 240px;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  margin: 0 3.5rem;
+}
+
+.about-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Right content ── */
+.about-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.about-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.about-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.85;
+  margin: 0;
+  max-width: 360px;
+}
+
+.about-cta {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.about-cta:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Bottom bar ── */
+.about-bottom-bar {
+  position: absolute;
+  bottom: 2rem;
+  left: 4rem;
+  right: 4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.about-bottom-left,
+.about-bottom-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.about-bottom-right {
+  text-align: right;
+}
+
+.about-bottom-center {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    padding: 0 2rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-divider { display: none; }
+
+  .about-name-img { max-width: 300px; }
+
+  .about-desc { max-width: 100%; }
+
+  .about-cta { align-self: center; }
+
+  .about-bottom-bar { left: 2rem; right: 2rem; }
+
+  .about-bottom-center { display: none; }
+}

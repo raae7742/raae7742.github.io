@@ -1,43 +1,73 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
+import { useParams, Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import { blogPosts } from "../data/blogPosts";
+import waveTextureImg from "../assets/img/wave-texture.jpg";
 import "../styles/BlogDetail.css";
 
 function BlogDetail() {
   const { id } = useParams();
-  const post = blogPosts.find(post => post.id === parseInt(id));
+  const post = blogPosts.find((p) => p.id === parseInt(id));
 
   if (!post) {
-    return <div>Post not found</div>;
+    return (
+      <div className="bd">
+        <img src={waveTextureImg} alt="" className="bd-bg-img" aria-hidden="true" />
+        <div className="bd-overlay" aria-hidden="true" />
+        <div className="bd-not-found">
+          <Link to="/blog" className="bd-back">← BLOG</Link>
+          <p>Post not found.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="container blog-detail-container">
-      <div className="blog-detail-header">
-        <p className="blog-date">{post.date}</p>
-        <p className="blog-title">{post.title}</p>
-        <p className="blog-description">{post.description}</p>
+    <div className="bd">
+      <img src={waveTextureImg} alt="" className="bd-bg-img" aria-hidden="true" />
+      <div className="bd-overlay" aria-hidden="true" />
+
+      <div className="bd-bottom-bar">
+        <div className="bd-bottom-left"><span>BASED IN SEOUL</span></div>
+        <div className="bd-bottom-center">H</div>
+        <div className="bd-bottom-right">
+          <span>© 2026 HYEONAE</span>
+          <span>ALL RIGHTS RESERVED</span>
+        </div>
       </div>
 
-      <div className="blog-detail-content">
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          className="blog-detail-image"
-        />
-        <div className="markdown-content">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
-        </div>
-        <div className="blog-tags">
-          {post.tags.map((tag, index) => (
-            <span key={index} className={`tag ${tag}`}>{tag}</span>
-          ))}
-        </div>
+      <div className="bd-stage">
+        {/* ── LEFT SIDEBAR ── */}
+        <aside className="bd-sidebar">
+          <Link to="/blog" className="bd-back">← BLOG</Link>
+
+          <div className="bd-meta">
+            <span className="bd-meta-type">◆ {post.type}</span>
+            <span className="bd-meta-date">{post.date}</span>
+          </div>
+
+          <h1 className="bd-title">{post.title}</h1>
+          <p className="bd-desc">{post.description}</p>
+
+          <div className="bd-tags">
+            {post.tags.map((tag, i) => (
+              <span key={i} className="bd-tag">{tag}</span>
+            ))}
+          </div>
+        </aside>
+
+        {/* ── MAIN CONTENT ── */}
+        <main className="bd-main">
+          <img src={post.image} alt={post.title} className="bd-hero" />
+          <div className="bd-markdown">
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
+          </div>
+          <p className="bd-author">— Hyeonae</p>
+        </main>
       </div>
     </div>
   );
 }
 
-export default BlogDetail; 
+export default BlogDetail;
