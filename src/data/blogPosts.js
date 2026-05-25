@@ -5,10 +5,12 @@ import mmrImage from '../assets/img/mmr.png';
 export const blogPosts = [
   {
     id: 1,
-    title: "Multi-Master Replication: When Every Cashier Can Ring You Up",
-    date: "3 Nov 2024",
-    description: "How databases stay open for business even when one “counter” goes down",
-    content: ` ## Imagine This
+    title: 'Multi-Master Replication',
+    date: '3 Nov 2024',
+    description: 'How databases stay open for business even when one “counter” goes down',
+    content: ` # When Every Cashier Can Ring You Up
+
+## Imagine This
 
 Imagine you’re at a big café on a busy weekend.
 
@@ -141,10 +143,12 @@ So when to use it?
   },
   {
     id: 2,
-    title: "Load Balancers: The Ticket Machine for Your Website Traffic",
+    title: "Load Balancers",
     date: "29 Oct 2024",
     description: "Distribute traffic efficiently, from L4 to L7",
-    content: ` Imagine all the people visiting your website are like customers walking into a bank.
+    content: ` # The Ticket Machine for Your Website Traffic
+
+Imagine all the people visiting your website are like customers walking into a bank.
 
 Now, if the bank just says, *“Hey everyone, line up over here!”* what happens?
 Everyone crowds into one poor teller’s line, while the other tellers sit back sipping coffee. That’s exactly what happens when all traffic goes to a single server—it gets overloaded while others do nothing.

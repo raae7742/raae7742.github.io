@@ -188,7 +188,7 @@
 /* ── Markdown ── */
 .bd-markdown {
   font-family: 'Inter', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   line-height: 1.9;
   color: rgba(255, 255, 255, 0.7);
   counter-reset: section;
@@ -196,7 +196,7 @@
 
 .bd-markdown h1 {
   font-family: 'Inter', sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -206,7 +206,7 @@
 
 .bd-markdown h2 {
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -221,7 +221,7 @@
 .bd-markdown h2::before {
   content: counter(section, decimal-leading-zero);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   font-weight: 300;
   font-style: italic;
   color: rgba(232, 216, 74, 0.5);
@@ -231,7 +231,7 @@
 
 .bd-markdown h3 {
   font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
