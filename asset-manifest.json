@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e7683175.css",
-    "main.js": "/static/js/main.d26148a5.js",
+    "main.css": "/static/css/main.ceee6e02.css",
+    "main.js": "/static/js/main.ae955d57.js",
     "static/js/453.5006affa.chunk.js": "/static/js/453.5006affa.chunk.js",
     "static/media/wave-texture.jpg": "/static/media/wave-texture.19c6fe50af65dca18281.jpg",
     "static/media/turntable.png": "/static/media/turntable.3074f2057231365160c8.png",
@@ -15,12 +15,12 @@
     "static/media/AdvinePixel-Regular.otf": "/static/media/AdvinePixel-Regular.5e9c8e4150fe48477175.otf",
     "static/media/logo.png": "/static/media/logo.160e8e5ded566083db4c.png",
     "index.html": "/index.html",
-    "main.e7683175.css.map": "/static/css/main.e7683175.css.map",
-    "main.d26148a5.js.map": "/static/js/main.d26148a5.js.map",
+    "main.ceee6e02.css.map": "/static/css/main.ceee6e02.css.map",
+    "main.ae955d57.js.map": "/static/js/main.ae955d57.js.map",
     "453.5006affa.chunk.js.map": "/static/js/453.5006affa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7683175.css",
-    "static/js/main.d26148a5.js"
+    "static/css/main.ceee6e02.css",
+    "static/js/main.ae955d57.js"
   ]
 }
