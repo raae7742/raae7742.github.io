@@ -14,7 +14,7 @@ function Header() {
         <NavLink to="/blog">Blog</NavLink>
         <NavLink to="/project">Project</NavLink>
       </nav>
-      <span className="header-role">Developer</span>
+
     </header>
   );
 }

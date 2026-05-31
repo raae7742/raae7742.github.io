@@ -268,7 +268,8 @@
     padding-right: 1.25rem;
   }
 
-  .jjal-form { flex-direction: column; }
+  .jjal-form { flex-direction: column; align-items: stretch; }
+  .jjal-textarea { width: 100%; box-sizing: border-box; }
   .jjal-submit { width: 100%; }
   .jjal-grid { grid-template-columns: 1fr; }
 }

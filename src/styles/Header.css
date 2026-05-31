@@ -56,14 +56,6 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
-.header-role {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-}
-
 @media (max-width: 480px) {
     .header {
         padding: 1rem 1.25rem;
@@ -77,4 +69,5 @@
         padding: 0.25rem 0.5rem;
         font-size: 0.75rem;
     }
+
 }
