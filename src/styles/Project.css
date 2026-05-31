@@ -234,4 +234,5 @@
   .proj-card { gap: 1rem; padding: 1.5rem 1rem; }
   .proj-card-num { font-size: 1.6rem; width: 2rem; }
   .proj-card-name { font-size: 1.3rem; }
+  .proj-bottom-bar { left: 1.25rem; right: 1.25rem; }
 }
