@@ -31,7 +31,7 @@
 /* ── Bottom bar (matches About) ── */
 .blog-bottom-bar {
   position: absolute;
-  bottom: 2rem;
+  bottom: 3rem;
   left: 4rem;
   right: 4rem;
   display: flex;
@@ -81,7 +81,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  padding: 3rem 0;
+  padding: 18rem 0 4rem;
 }
 
 /* ── Turntable wrap ── */
@@ -138,7 +138,7 @@
   position: absolute;
   width: 55%;
   top: 2%;
-  right: 2%;
+  right: 10%;
   filter: invert(1) brightness(0.6);
   mix-blend-mode: screen;
   pointer-events: none;
@@ -256,7 +256,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 3rem 0;
+  padding: 18rem 0 8rem;
   overflow-y: auto;
   max-height: 100vh;
 }
@@ -278,7 +278,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  min-height: 38.4rem;
   background: rgba(0, 0, 0, 0.18);
 }
 
@@ -394,15 +393,20 @@
 @media (max-width: 900px) {
   .blog-stage {
     flex-direction: column;
+    align-items: stretch;
     padding: 0 3rem;
   }
 
   .blog-left {
     flex: none;
+    width: 100%;
+    align-items: center;
     padding: 3rem 0 2rem;
   }
 
-  .blog-tt-img { max-width: 360px; }
+  .blog-tt-img { max-width: 360px; margin: 0 auto; }
+
+  .blog-np-bar { width: 100%; }
 
   .blog-divider { display: none; }
 
@@ -416,5 +420,8 @@
 
 @media (max-width: 480px) {
   .blog-stage { padding: 0 1.25rem; }
-  .blog-tt-img { max-width: 280px; }
+  .blog-tt-img { max-width: 280px; margin: 0 auto; }
+  .blog-np-footer { flex-wrap: wrap; gap: 0.8rem; }
+  .blog-np-meta { white-space: nowrap; }
+  .blog-bottom-bar { left: 1.25rem; right: 1.25rem; }
 }
