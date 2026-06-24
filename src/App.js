@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, matchPath } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "./components/Home";
@@ -33,6 +33,15 @@ function AppInner() {
   const hideHeader = HEADER_HIDDEN_PATHS.some((p) =>
     matchPath({ path: p, end: false }, location.pathname)
   );
+
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
+        page_path: location.pathname + location.search,
+      });
+    }
+  }, [location]);
+
   return (
     <div className="app">
       {!hideHeader && <Header />}
