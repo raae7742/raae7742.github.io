@@ -146,6 +146,34 @@
   margin-bottom: 1.5rem;
 }
 
+/* ── Today mode ── */
+.jjal-today-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.jjal-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.jjal-section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #e8d84a;
+  margin: 0;
+}
+
+.jjal-section-desc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
 /* ── Browse mode ── */
 .jjal-category-pills {
   display: flex;

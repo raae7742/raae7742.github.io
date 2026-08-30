@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { JJAL_LIST, CATEGORIES, recommend } from "../data/jjalData";
 import { getSavedIds, persistSavedIds } from "../utils/savedJjal";
+import { getDailyPicks } from "../utils/dailyPicks";
 import "../styles/Jjal.css";
+
+const LATEST_COUNT = 8;
+const DAILY_PICK_COUNT = 6;
 
 function googleImageUrl(name) {
   return `https://www.google.com/search?q=${encodeURIComponent(name + ' 짤')}&tbm=isch`;
@@ -49,7 +53,7 @@ function JjalCard({ jjal, saved, onToggleSave }) {
 }
 
 function Jjal() {
-  const [mode, setMode] = useState("search");
+  const [mode, setMode] = useState("today");
   const [query, setQuery] = useState("");
   const [submitted, setSubmitted] = useState("");
   const [activeCategory, setActiveCategory] = useState("전체");
@@ -99,8 +103,13 @@ function Jjal() {
 
   const savedResults = JJAL_LIST.filter((j) => savedIds.has(j.id));
 
+  const dailyPicks = getDailyPicks(JJAL_LIST, DAILY_PICK_COUNT);
+  const latestPicks = [...JJAL_LIST].sort((a, b) => b.id - a.id).slice(0, LATEST_COUNT);
+
   const subtitle =
-    mode === "search"
+    mode === "today"
+      ? "매일 바뀌는 오늘의 짤과 새로 추가된 짤을 확인하세요."
+      : mode === "search"
       ? "맥락을 입력하면 어울리는 짤을 추천해드립니다."
       : mode === "browse"
       ? "카테고리별로 짤을 찾아보세요."
@@ -118,6 +127,12 @@ function Jjal() {
       </header>
 
       <div className="jjal-tabs">
+        <button
+          className={`jjal-tab${mode === "today" ? " active" : ""}`}
+          onClick={() => setMode("today")}
+        >
+          🌞 오늘의 짤
+        </button>
         <button
           className={`jjal-tab${mode === "search" ? " active" : ""}`}
           onClick={() => setMode("search")}
@@ -142,6 +157,44 @@ function Jjal() {
       </div>
 
       <main className="jjal-main">
+        {mode === "today" && (
+          <div className="jjal-today-mode">
+            <section className="jjal-section">
+              <div className="jjal-section-header">
+                <h2 className="jjal-section-title">🌞 오늘의 짤</h2>
+                <span className="jjal-section-desc">매일 새로운 조합으로 추천해드려요</span>
+              </div>
+              <div className="jjal-grid">
+                {dailyPicks.map((j) => (
+                  <JjalCard
+                    key={j.id}
+                    jjal={j}
+                    saved={savedIds.has(j.id)}
+                    onToggleSave={handleToggleSave}
+                  />
+                ))}
+              </div>
+            </section>
+
+            <section className="jjal-section">
+              <div className="jjal-section-header">
+                <h2 className="jjal-section-title">🆕 최신 짤</h2>
+                <span className="jjal-section-desc">가장 최근에 추가된 짤이에요</span>
+              </div>
+              <div className="jjal-grid">
+                {latestPicks.map((j) => (
+                  <JjalCard
+                    key={j.id}
+                    jjal={j}
+                    saved={savedIds.has(j.id)}
+                    onToggleSave={handleToggleSave}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+
         {mode === "search" && (
           <div className="jjal-search-mode">
             <form className="jjal-form" onSubmit={handleSearch}>
