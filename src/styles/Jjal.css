@@ -146,11 +146,9 @@
   margin-bottom: 1.5rem;
 }
 
-/* ── Today mode ── */
-.jjal-today-mode {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+/* ── Today / latest sections ── */
+.jjal-section {
+  margin-bottom: 3rem;
 }
 
 .jjal-section-header {
