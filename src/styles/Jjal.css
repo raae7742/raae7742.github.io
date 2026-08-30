@@ -183,6 +183,16 @@
   font-size: 0.68rem;
 }
 
+.jjal-tab-count {
+  margin-left: 0.35rem;
+  font-size: 0.62rem;
+  background: rgba(232, 216, 74, 0.15);
+  color: #e8d84a;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
 /* ── Grid ── */
 .jjal-grid {
   display: grid;
@@ -193,6 +203,7 @@
 
 /* ── Card ── */
 .jjal-card {
+  position: relative;
   background: #0d1614;
   padding: 1.5rem;
   display: flex;
@@ -207,6 +218,37 @@
 .jjal-card:hover {
   background: rgba(255, 255, 255, 0.05);
   box-shadow: inset 3px 0 0 rgba(232, 216, 74, 0.5);
+}
+
+.jjal-save-btn {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.15s;
+  z-index: 2;
+}
+
+.jjal-save-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: scale(1.12);
+}
+
+.jjal-save-btn.saved {
+  color: #ff5c7a;
+  border-color: rgba(255, 92, 122, 0.4);
 }
 
 .jjal-card-header {
@@ -259,6 +301,30 @@
   opacity: 1;
 }
 
+/* ── Toast ── */
+.jjal-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%);
+  background: #e8d84a;
+  color: #0d1614;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.8rem 1.4rem;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  z-index: 50;
+  animation: jjal-toast-in 0.2s ease-out;
+  white-space: nowrap;
+}
+
+@keyframes jjal-toast-in {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
 /* ── Responsive ── */
 @media (max-width: 700px) {
   .jjal-header-inner,
@@ -272,4 +338,18 @@
   .jjal-textarea { width: 100%; box-sizing: border-box; }
   .jjal-submit { width: 100%; }
   .jjal-grid { grid-template-columns: 1fr; }
+
+  .jjal-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    transform: none;
+    white-space: normal;
+    text-align: center;
+  }
+
+  @keyframes jjal-toast-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
